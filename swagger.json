@@ -1,0 +1,241 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Kelompok 1 BINAR Challenge 8",
+        "description": "Full Rest API Challenge 8",
+        "termsOfService": "terms",
+        "contact": {
+            "email": "ryoswandaru@gmail.com"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "http://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost.com",
+    "basePath": "/api",
+    "tags": [{
+        "name": "profile",
+        "description": "About Players"
+    }],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/profile": {
+            "post": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "Add new Player",
+                "description": "Create New",
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "Create New Players",
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "gender": {
+                                "type": "string"
+                            },
+                            "phoneNumber": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        }
+                    }
+                }],
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success"
+                    },
+                    "422": {
+                        "description": "Error"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "Find all player",
+                "description": "",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "in": "body",
+                    "name": "body",
+                    "description": "",
+                    "required": true,
+                    "schema": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "integer",
+                                "format": "int64"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "gender": {
+                                "type": "string"
+                            },
+                            "phoneNumber": {
+                                "type": "integer",
+                                "format": "int64"
+                            }
+                        }
+                    }
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Some error occurred"
+                    }
+                }
+            }
+        },
+        "/api/database/:id": {
+            "get": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "Finds Player by ID",
+                "description": "",
+                "operationId": "findPlayerById",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "query",
+                    "description": "ID of the player",
+                    "required": true,
+                    "type": "integer"
+                }],
+                "responses": {
+                    "200": {
+                        "description": "Success finding player by id"
+                    },
+                    "500": {
+                        "description": "Error retrieving Player with id"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "Update Player",
+                "description": "",
+                "operationId": "updatePlayers",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                        "name": "id",
+                        "in": "query",
+                        "description": "ID of the player",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "Updated user object",
+                        "required": true,
+                        "schema": null
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Updated success"
+                    },
+                    "402": {
+                        "description": "Can't create article"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "Delete Players by Id",
+                "description": "Delete players by ID",
+                "operationId": "deletePlayer",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of the player",
+                    "required": true,
+                    "type": "integer",
+                    "minimum": 1,
+                    "format": "int64"
+                }],
+                "responses": {
+                    "201": {
+                        "description": "Delete Success"
+                    },
+                    "404": {
+                        "description": "tidak ditemukan"
+                    },
+                    "422": {
+                        "description": "Tidak bisa menghapus article"
+                    }
+                }
+            }
+        },
+        "/profile/history": {
+            "post": {
+                "tags": [
+                    "profile"
+                ],
+                "summary": "User History",
+                "description": "",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [{
+                    "name": "id",
+                    "in": "query",
+                    "description": "User History",
+                    "required": true,
+                    "type": "integer"
+                }],
+                "responses": {
+                    "201": {
+                        "description": "Success"
+                    },
+                    "422": {
+                        "description": "Error"
+                    }
+                }
+            }
+        }
+    }
+}
